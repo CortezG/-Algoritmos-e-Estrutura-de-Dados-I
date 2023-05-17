@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int dia;
+    int mes;
+    int ano;
+} Data;
+
+typedef struct {
+    char nome[100];
+    Data dataNascimento;
+    char cpf[12]; // Assumindo CPF com 11 dígitos
+} Pessoa;
+
+void preencherData(Data* data, int dia, int mes, int ano) {
+    data->dia = dia;
+    data->mes = mes;
+    data->ano = ano;
+}
+
+void imprimirData(const Data* data) {
+    printf("%02d/%02d/%04d\n", data->dia, data->mes, data->ano);
+}
+
+void preencherPessoa(Pessoa* pessoa, const char* nome, const Data* dataNascimento, const char* cpf) {
+    strcpy(pessoa->nome, nome);
+    pessoa->dataNascimento = *dataNascimento;
+    strcpy(pessoa->cpf, cpf);
+}
+
+void imprimirPessoa(const Pessoa* pessoa) {
+    printf("Nome: %s\n", pessoa->nome);
+    printf("Data de Nascimento: ");
+    imprimirData(&pessoa->dataNascimento);
+    printf("CPF: %s\n", pessoa->cpf);
+}
+
+int main() {
+    Data dataNascimento;
+    preencherData(&dataNascimento, 1, 1, 1990);
+
+    Pessoa pessoa;
+    preencherPessoa(&pessoa, "João da Silva", &dataNascimento, "123.456.789-00");
+
+    imprimirPessoa(&pessoa);
+
+    return 0;
+}
