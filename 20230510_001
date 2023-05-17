@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char* data;
+} String;
+
+String* criarString(const char* texto) {
+    String* novaString = (String*)malloc(sizeof(String));
+    novaString->data = strdup(texto);
+    return novaString;
+}
+
+void destruirString(String* str) {
+    free(str->data);
+    free(str);
+}
+
+int contemCaractere(String* str, char caractere) {
+    if (strchr(str->data, caractere) != NULL) {
+        return 1;
+    }
+    return 0;
+}
+
+int main() {
+    char frase[100];
+    char caractere;
+
+    printf("Digite uma frase: ");
+    fgets(frase, sizeof(frase), stdin);
+
+    printf("Digite um caractere: ");
+    scanf("%c", &caractere);
+
+    // Criar uma nova instância da string
+    String* minhaString = criarString(frase);
+
+    if (contemCaractere(minhaString, caractere)) {
+        printf("SIM\n");
+    } else {
+        printf("NÃO\n");
+    }
+
+    // Liberar a memória alocada
+    destruirString(minhaString);
+
+    return 0;
+}
