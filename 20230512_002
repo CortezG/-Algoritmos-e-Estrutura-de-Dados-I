@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    double real;
+    double imag;
+} Complexo;
+
+Complexo* criarComplexo(double real, double imag) {
+    Complexo* complexo = (Complexo*)malloc(sizeof(Complexo));
+    complexo->real = real;
+    complexo->imag = imag;
+    return complexo;
+}
+
+void destruirComplexo(Complexo* complexo) {
+    free(complexo);
+}
+
+Complexo* somaComplexos(Complexo* c1, Complexo* c2) {
+    Complexo* resultado = criarComplexo(0.0, 0.0);
+    resultado->real = c1->real + c2->real;
+    resultado->imag = c1->imag + c2->imag;
+    return resultado;
+}
+
+Complexo* subtracaoComplexos(Complexo* c1, Complexo* c2) {
+    Complexo* resultado = criarComplexo(0.0, 0.0);
+    resultado->real = c1->real - c2->real;
+    resultado->imag = c1->imag - c2->imag;
+    return resultado;
+}
+
+Complexo* multiplicacaoComplexos(Complexo* c1, Complexo* c2) {
+    Complexo* resultado = criarComplexo(0.0, 0.0);
+    resultado->real = (c1->real * c2->real) - (c1->imag * c2->imag);
+    resultado->imag = (c1->real * c2->imag) + (c1->imag * c2->real);
+    return resultado;
+}
+
+Complexo* divisaoComplexos(Complexo* c1, Complexo* c2) {
+    Complexo* resultado = criarComplexo(0.0, 0.0);
+    double divisor = (c2->real * c2->real) + (c2->imag * c2->imag);
+    resultado->real = ((c1->real * c2->real) + (c1->imag * c2->imag)) / divisor;
+    resultado->imag = ((c1->imag * c2->real) - (c1->real * c2->imag)) / divisor;
+    return resultado;
+}
+
+int main() {
+    Complexo* z1 = criarComplexo(2.0, 3.0);
+    Complexo* z2 = criarComplexo(1.0, -2.0);
+
+    Complexo* soma = somaComplexos(z1, z2);
+    Complexo* subtracao = subtracaoComplexos(z1, z2);
+    Complexo* multiplicacao = multiplicacaoComplexos(z1, z2);
+    Complexo* divisao = divisaoComplexos(z1, z2);
+
+    printf("Soma: %.2lf + %.2lfi\n", soma->real, soma->imag);
+    printf("Subtração: %.2lf + %.2lfi\n", subtracao->real, subtracao->imag);
+    printf("Multiplicação: %.2lf + %.2lfi\n", multiplicacao->real, multiplicacao->imag);
+    printf("Divisão: %.2lf + %.2lfi\n", divisao->real, divisao->imag);
+
+    destruirComplexo(z1);
+    destruirComplexo(z2);
+    destruirComplexo(soma);
+    destruirComplexo(subtracao);
+    destruirComplexo(multiplicacao);
+    destruirComplexo(divisao);
+
+    return 0;
+}
