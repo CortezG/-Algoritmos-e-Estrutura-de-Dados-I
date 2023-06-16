@@ -1,0 +1,28 @@
+Aluno AlunoMaisFilhos(ListaInteira* m) {
+    Elemento* i = m->inicio;
+    Aluno alunoMaisFilhos;
+    int maiorNumFilhos = 0;
+
+    while (i != NULL) {
+        if (i->alun.nfilhos > maiorNumFilhos) {
+            maiorNumFilhos = i->alun.nfilhos;
+            alunoMaisFilhos = i->alun;
+        }
+        i = i->proximo;
+    }
+
+    return alunoMaisFilhos;
+}
+
+
+case 8:
+    {
+        Aluno alunoMaisFilhos = AlunoMaisFilhos(&lista);
+        printf("Aluno com mais filhos:\n");
+        printf("Nome: %s\n", alunoMaisFilhos.nome);
+        printf("Idade: %d\n", alunoMaisFilhos.idade);
+        printf("Matricula: %d\n", alunoMaisFilhos.matricula);
+        printf("Número de filhos: %d\n", alunoMaisFilhos.nfilhos);
+        printf("\n");
+        break;
+    }
