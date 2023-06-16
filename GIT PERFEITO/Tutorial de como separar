@@ -1,0 +1,14 @@
+Para separar os arquivos em um projeto no Visual Studio Code, você precisa criar um diretório para o seu projeto e adicionar os arquivos nesse diretório. Em seguida, você pode abrir esse diretório no Visual Studio Code e organizar os arquivos adequadamente.
+
+Aqui está um exemplo de como organizar os arquivos em um projeto:
+
+Crie um diretório para o seu projeto, por exemplo, "meu_projeto".
+Dentro do diretório "meu_projeto", crie os arquivos lista.h, lista.c e main.c.
+Coloque o código correspondente em cada arquivo, conforme mencionado anteriormente.
+Abra o Visual Studio Code.
+No menu "File" (Arquivo), escolha a opção "Open Folder" (Abrir Pasta).
+Navegue até o diretório "meu_projeto" e selecione-o para abri-lo no Visual Studio Code.
+Agora você verá a estrutura do projeto no painel Explorer do Visual Studio Code.
+Você pode navegar pelos arquivos clicando neles no painel Explorer.
+Para compilar e executar o projeto, você precisará usar o terminal integrado do Visual Studio Code. Para abrir o terminal, vá para o menu "View" (Exibir) e escolha a opção "Terminal" ou use o atalho de teclado Ctrl+ (backtick).
+No terminal, compile os arquivos usando um comando de compilação adequado, como gcc. Por exemplo, você pode usar o seguinte comando para compilar os arquivos lista.c e main.c e gerar um executável chamado projeto:
