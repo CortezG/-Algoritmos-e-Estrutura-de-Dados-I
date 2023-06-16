@@ -197,6 +197,9 @@ int main()
     ListaInteira lista;
     int opcao, matricula;
     InicializarEstrutura(&lista);
+
+
+    
     do
     {
         printf("\nTabela:\n");
