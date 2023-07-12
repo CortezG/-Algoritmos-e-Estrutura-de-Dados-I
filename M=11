@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define M 11
+
+// Definição da estrutura de um nó da lista encadeada
+typedef struct Node {
+    int key;
+    struct Node* next;
+} Node;
+
+// Função para criar um novo nó
+Node* criarNo(int chave) {
+    Node* novoNo = (Node*)malloc(sizeof(Node));
+    novoNo->key = chave;
+    novoNo->next = NULL;
+    return novoNo;
+}
+
+// Função hash que calcula o índice com base na chave
+int hash(int chave) {
+    return (2 * chave + 5) % M;
+}
+
+// Função para inserir uma chave na tabela hash
+void inserir(Node** tabela, int chave) {
+    int indice = hash(chave);
+
+    // Se a posição na tabela estiver vazia, cria um novo nó
+    if (tabela[indice] == NULL) {
+        tabela[indice] = criarNo(chave);
+    } else {
+        // Se a posição já contém elementos, insere no início da lista encadeada
+        Node* novoNo = criarNo(chave);
+        novoNo->next = tabela[indice];
+        tabela[indice] = novoNo;
+    }
+}
+
+// Função para exibir a tabela hash
+void exibir(Node** tabela) {
+    for (int i = 0; i < M; i++) {
+        printf("Índice %d: ", i);
+
+        if (tabela[i] == NULL) {
+            printf("Vazio\n");
+        } else {
+            Node* temp = tabela[i];
+            while (temp != NULL) {
+                printf("%d ", temp->key);
+                temp = temp->next;
+            }
+            printf("\n");
+        }
+    }
+}
+
+int main() {
+    // Criação da tabela hash
+    Node** tabela = (Node**)malloc(M * sizeof(Node*));
+    for (int i = 0; i < M; i++) {
+        tabela[i] = NULL;
+    }
+
+    // Inserção das chaves na tabela hash
+    inserir(tabela, 12);
+    inserir(tabela, 44);
+    inserir(tabela, 13);
+    inserir(tabela, 88);
+    inserir(tabela, 23);
+    inserir(tabela, 94);
+    inserir(tabela, 11);
+    inserir(tabela, 39);
+    inserir(tabela, 20);
+    inserir(tabela, 16);
+    inserir(tabela, 5);
+
+    // Exibição da tabela hash
+    exibir(tabela);
+
+    return 0;
+}
